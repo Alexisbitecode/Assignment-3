@@ -184,6 +184,56 @@ st.write(f"Mean Squared Error (MSE): {mse}")
 st.write(f"R-squared (R2): {r2}")
 
 
+# Define independent and dependent variables
+X = filtered_df_encoded[["weeks", "habit_smoker"]]
+y = filtered_df_encoded["weight"]
+
+# Convert columns to appropriate data types (float)
+X["mage"] = X["mage"].astype(float)
+X["weeks"] = X["weeks"].astype(float)
+X["visits"] = X["visits"].astype(float)
+
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create a linear regression model
+model = LinearRegression()
+
+# Train the model
+model.fit(X_train, y_train)
+
+# Make predictions on the test data
+y_pred = model.predict(X_test)
+
+# Add a constant term (intercept) to the independent variables
+X = sm.add_constant(X)
+
+# Create a linear regression model with statsmodels
+model_stats = sm.OLS(y, X)
+
+
+
+# Fit the model
+results = model_stats.fit()
+
+# Get the summary of the regression results
+
+st.subheader("Regression Results")
+st.text(results.summary())
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Calculate evaluation metrics
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+# Display results
+
+st.write("Here are the results of linear regression using statsmodels:")
+st.write(f"Mean Squared Error (MSE): {mse}")
+st.write(f"R-squared (R2): {r2}")
 
 
 
