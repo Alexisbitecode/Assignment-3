@@ -57,8 +57,9 @@ numeric_columns = filtered_df.select_dtypes(include=["number"]).columns
 num_rows = len(numeric_columns) // 3 + (len(numeric_columns) % 3 > 0)
 num_cols = min(len(numeric_columns), 3)
 
-# Create a figure with subplots
-fig, axes = plt.subplots(nrows=num_rows, ncols=num_cols, figsize=(15, 4 * num_rows))
+# Create a figure with subplots and adjust hspace for spacing
+fig, axes = plt.subplots(nrows=num_rows, ncols=num_cols, figsize=(15, 4 * num_rows), 
+                         gridspec_kw={'hspace': 0.5})
 
 # Iterate through numeric columns and create histograms
 for i, column in enumerate(numeric_columns):
@@ -86,51 +87,47 @@ st.pyplot(fig)
 st.sidebar.header("Data Exploration")
 
 
+# Create subplots with a 2-row, three-column grid
+fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(15, 8))
+
 # Scatter plot: Weight vs. Mage
-st.subheader("Weight vs. Mage")
-scatter_fig_mage = plt.figure()
-plt.scatter(filtered_df['mage'], filtered_df['weight'], alpha=0.5)
-plt.xlabel('Mage')
-plt.ylabel('Weight')
-plt.title('Weight vs. Mage')
-st.pyplot(scatter_fig_mage)
+axes[0, 0].scatter(filtered_df['mage'], filtered_df['weight'], alpha=0.5)
+axes[0, 0].set_xlabel('Mage')
+axes[0, 0].set_ylabel('Weight')
+axes[0, 0].set_title('Weight vs. Mage')
 
 # Box plot: Weight vs. Habit (Smoking Status) without gridlines
-st.subheader("Weight vs. Habit (Smoking Status)")
-boxplot_fig_habit = plt.figure()
-filtered_df.boxplot(column='weight', by='habit', ax=plt.gca(), grid=False)
-plt.xlabel('Habit (Smoking Status)')
-plt.ylabel('Weight')
-plt.title('Weight vs. Habit (Smoking Status)')
-st.pyplot(boxplot_fig_habit)
-
+filtered_df.boxplot(column='weight', by='habit', ax=axes[0, 1], grid=False)
+axes[0, 1].set_xlabel('Habit (Smoking Status)')
+axes[0, 1].set_ylabel('Weight')
+axes[0, 1].set_title('Weight vs. Habit (Smoking Status)')
 
 # Scatter plot: Weight vs. Weeks
-st.subheader("Weight vs. Weeks")
-scatter_fig_weeks = plt.figure()
-plt.scatter(filtered_df['weeks'], filtered_df['weight'], alpha=0.5)
-plt.xlabel('Weeks')
-plt.ylabel('Weight')
-plt.title('Weight vs. Weeks')
-st.pyplot(scatter_fig_weeks)
+axes[0, 2].scatter(filtered_df['weeks'], filtered_df['weight'], alpha=0.5)
+axes[0, 2].set_xlabel('Weeks')
+axes[0, 2].set_ylabel('Weight')
+axes[0, 2].set_title('Weight vs. Weeks')
 
 # Scatter plot: Weight vs. Visits
-st.subheader("Weight vs. Visits")
-scatter_fig_visits = plt.figure()
-plt.scatter(filtered_df['visits'], filtered_df['weight'], alpha=0.5)
-plt.xlabel('Visits')
-plt.ylabel('Weight')
-plt.title('Weight vs. Visits')
-st.pyplot(scatter_fig_visits)
+axes[1, 0].scatter(filtered_df['visits'], filtered_df['weight'], alpha=0.5)
+axes[1, 0].set_xlabel('Visits')
+axes[1, 0].set_ylabel('Weight')
+axes[1, 0].set_title('Weight vs. Visits')
 
 # Scatter plot: Weight vs. Gained
-st.subheader("Weight vs. Gained")
-scatter_fig_gained = plt.figure()
-plt.scatter(filtered_df['gained'], filtered_df['weight'], alpha=0.5)
-plt.xlabel('Gained')
-plt.ylabel('Weight')
-plt.title('Weight vs. Gained')
-st.pyplot(scatter_fig_gained)
+axes[1, 1].scatter(filtered_df['gained'], filtered_df['weight'], alpha=0.5)
+axes[1, 1].set_xlabel('Gained')
+axes[1, 1].set_ylabel('Weight')
+axes[1, 1].set_title('Weight vs. Gained')
+
+# Remove empty subplot
+fig.delaxes(axes[1, 2])
+
+# Adjust spacing between subplots
+plt.tight_layout()
+
+# Display the figure using st.pyplot
+st.pyplot(fig)
 
 
 
