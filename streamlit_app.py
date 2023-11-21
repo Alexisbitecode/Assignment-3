@@ -29,6 +29,13 @@ st.write("13. whitemom: Whether the mom is white or not white.")
 st.write("We are gonna to perform an analysis on the factors related to a baby's birth weight, specifically focusing on the maternal factors.")
 st.write("Following the 'ceteris paribus' rule, we have exclusively chosen data related to male infants born to white mothers and focused our study on the factors originating from the mother that may affect the baby's birth weight.")
 
+#have some rough ideas about the dataframe
+with st.expander("Click to reveal more"):
+    st.write("This is hidden by default.")
+    # Display the top 20 rows of the DataFrame
+    st.dataframe(df.head(20))
+
+
 # Data preprocessing
 st.sidebar.header("Data Preprocessing")
 st.write("Now, let's preprocess the data. Firstly, we will filter out data where the gender is 'male', and the mom's race is 'white'. Then, we will drop the father-related variable column: 'fage'. Since prematurity is defined by the length of pregnancy in weeks, we will only keep 'weeks' and drop 'premie'. Maturity status is decided by the mom's age, so we will drop 'mature'. We choose 'weight' as our dependent varible and drop 'lowbirthweight'.")
