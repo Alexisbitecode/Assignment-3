@@ -194,8 +194,6 @@ mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
 # Display results
-st.header("Linear Regression Analysis (Using scikit-learn)")
-st.write("Here are the results of linear regression using statsmodels:")
 st.write(f"Mean Squared Error (MSE): {mse}")
 st.write(f"R-squared (R2): {r2}")
 
@@ -241,7 +239,7 @@ r2 = r2_score(y_test, y_pred)
 
 # Display results
 
-st.write("Here are the results of linear regression using statsmodels:")
+
 st.write(f"Mean Squared Error (MSE): {mse}")
 st.write(f"R-squared (R2): {r2}")
 
