@@ -33,6 +33,9 @@ st.write("Following the 'ceteris paribus' rule, we have exclusively chosen data 
 st.sidebar.header("Data Preprocessing")
 st.write("Now, let's preprocess the data.")
 
+# Filter data by white mothers and male babies
+filtered_df = df[(df["whitemom"] == "white") & (df["gender"] == "male")]
+
 # Drop unnecessary columns
 filtered_df.drop(columns=["fage", "marital", "mature", "premie", "lowbirthweight"], inplace=True)
 
