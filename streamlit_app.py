@@ -189,9 +189,8 @@ X = filtered_df_encoded[["weeks", "habit_smoker"]]
 y = filtered_df_encoded["weight"]
 
 # Convert columns to appropriate data types (float)
-X["mage"] = X["mage"].astype(float)
+
 X["weeks"] = X["weeks"].astype(float)
-X["visits"] = X["visits"].astype(float)
 
 
 # Split the data into training and testing sets
