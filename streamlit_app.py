@@ -4,16 +4,31 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
+
 
 # Load your dataset
 df = pd.read_csv("ncbirths.csv")
 
 # Title and description
-st.title("Linear Regression Analysis with Streamlit")
-st.write("This app explores a dataset and performs linear regression.")
+st.title("Male Babys' Birthday Weight Analysis with Streamlit")
+st.write("In 2004, the state of North Carolina released a large dataset containing information on births recorded in the state.")
+st.write("We have selected data from this dataset to perform an analysis on the factors related to a baby's birth weight, specifically focusing on the maternal factors.")
+st.write("In this dataset it has 1000 observations on the following 13 variables.")
+st.write("1. fage: Father's age in years.")
+st.write("2. mage: Mother's age in years.")
+st.write("3. mature: Maturity status of mother.")
+st.write("4. weeks: Length of pregnancy in weeks.")
+st.write("5. premie: Whether the birth was classified as premature (premie) or full-term.")
+st.write("6. visits: Number of hospital visits during pregnancy.")
+st.write("7. gained: Weight gained by mother during pregnancy in pounds.")
+st.write("8. weight: Weight of the baby at birth in pounds.")
+st.write("9. lowbirthweight: Whether the baby was classified as low birthweight (low) or not (not low).")
+st.write("10. gender: Gender of the baby, female or male.")
+st.write("11. habit: Status of the mother as a nonsmoker or a smoker.")
+st.write("12. marital: Whether the mother is married or not married at birth.")
+st.write("13. whitemom: Whether the mom is white or not white.")
+
+st.write("Following the 'ceteris paribus' rule, we have exclusively chosen data related to male infants born to white mothers and focused our study on the factors originating from the mother that may affect the baby's birth weight.")
 
 # Sidebar for data exploration
 st.sidebar.header("Data Exploration")
@@ -100,6 +115,10 @@ sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", linewidths=0.5)
 plt.title("Correlation Matrix")
 st.pyplot(plt)
 
+
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
 # Linear regression analysis with statsmodels
 st.sidebar.header("Linear Regression Analysis")
 st.write("Now, let's perform linear regression using statsmodels.")
