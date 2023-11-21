@@ -117,11 +117,8 @@ st.pyplot(scatter_fig_gained)
 # Correlation matrix
 st.subheader("Correlation Matrix")
 try:
-    # Handle missing values by filling them with the mean
-    filtered_df.fillna(filtered_df.mean(), inplace=True)
-    
     # Calculate the correlation matrix
-    correlation_matrix = filtered_df.corr(numeric_only=True)
+    correlation_matrix = filtered_df.corr()
     
     # Create a heatmap of the correlation matrix
     plt.figure(figsize=(12, 8))
@@ -130,6 +127,7 @@ try:
     st.pyplot(plt)
 except Exception as e:
     st.error(f"An error occurred while calculating the correlation matrix: {e}")
+
 
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
