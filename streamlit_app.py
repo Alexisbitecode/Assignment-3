@@ -30,8 +30,7 @@ st.write("We are gonna to perform an analysis on the factors related to a baby's
 st.write("Following the 'ceteris paribus' rule, we have exclusively chosen data related to male infants born to white mothers and focused our study on the factors originating from the mother that may affect the baby's birth weight.")
 
 #have some rough ideas about the dataframe
-with st.expander("Click to reveal more"):
-    st.write("This is hidden by default.")
+with st.expander("Click to see the top 20 rows of the data frame"):
     # Display the top 20 rows of the DataFrame
     st.dataframe(df.head(20))
 
@@ -81,12 +80,12 @@ plt.tight_layout()
 
 # Display the figure using st.pyplot
 st.pyplot(fig)
-
+st.write("From the histograms we can see...")
 
 # Sidebar for data exploration
 st.sidebar.header("Data Exploration")
 
-
+st.subheader("Bivariate Plots")
 # Create subplots with a 2-row, three-column grid
 fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(15, 8))
 
@@ -231,7 +230,6 @@ results = model_stats.fit()
 
 # Get the summary of the regression results
 
-st.subheader("Regression Results")
 st.text(results.summary())
 
 # Make predictions
