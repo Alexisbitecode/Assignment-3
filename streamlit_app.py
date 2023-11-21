@@ -116,17 +116,13 @@ st.pyplot(scatter_fig_gained)
 
 # Correlation matrix
 st.subheader("Correlation Matrix")
-try:
-    # Calculate the correlation matrix
-    correlation_matrix = filtered_df.corr()
-    
-    # Create a heatmap of the correlation matrix
-    plt.figure(figsize=(12, 8))
-    sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", linewidths=0.5)
-    plt.title("Correlation Matrix")
-    st.pyplot(plt)
-except Exception as e:
-    st.error(f"An error occurred while calculating the correlation matrix: {e}")
+# Calculate the correlation matrix
+correlation_matrix = filtered_df.corr()
+# Create a heatmap of the correlation matrix
+plt.figure(figsize=(12, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", linewidths=0.5)
+plt.title("Correlation Matrix")
+st.pyplot(plt)
 
 
 from sklearn.linear_model import LinearRegression
@@ -148,17 +144,31 @@ X["mage"] = X["mage"].astype(float)
 X["weeks"] = X["weeks"].astype(float)
 X["visits"] = X["visits"].astype(float)
 
-# Check and handle missing values (fill with mean)
-X["mage"].fillna(X["mage"].mean(), inplace=True)
-X["weeks"].fillna(X["weeks"].mean(), inplace=True)
-X["visits"].fillna(X["visits"].mean(), inplace=True)
 
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Create and fit the linear regression model
+# Create a linear regression model
 model = LinearRegression()
+
+# Train the model
 model.fit(X_train, y_train)
+
+# Make predictions on the test data
+y_pred = model.predict(X_test)
+
+# Add a constant term (intercept) to the independent variables
+X = sm.add_constant(X)
+
+# Create a linear regression model with statsmodels
+model_stats = sm.OLS(y, X)
+
+# Fit the model
+results = model_stats.fit()
+
+# Get the summary of the regression results
+st.subheader("Regression Results")
+st.text(results.summary())
 
 # Make predictions
 y_pred = model.predict(X_test)
@@ -169,14 +179,9 @@ r2 = r2_score(y_test, y_pred)
 
 # Display results
 st.header("Linear Regression Analysis (Using scikit-learn)")
-st.write("Here are the results of linear regression using scikit-learn:")
+st.write("Here are the results of linear regression using statsmodels:")
 st.write(f"Mean Squared Error (MSE): {mse}")
 st.write(f"R-squared (R2): {r2}")
-
-# You can also display coefficients and intercept
-st.subheader("Model Coefficients:")
-st.write("Intercept:", model.intercept_)
-st.write("Coefficients:", model.coef_)
 
 
 
