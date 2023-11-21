@@ -12,7 +12,6 @@ df = pd.read_csv("ncbirths.csv")
 # Title and description
 st.title("Male Babys' Birthday Weight Analysis with Streamlit")
 st.write("In 2004, the state of North Carolina released a large dataset containing information on births recorded in the state.")
-st.write("We have selected data from this dataset to perform an analysis on the factors related to a baby's birth weight, specifically focusing on the maternal factors.")
 st.write("In this dataset it has 1000 observations on the following 13 variables.")
 st.write("1. fage: Father's age in years.")
 st.write("2. mage: Mother's age in years.")
@@ -27,7 +26,7 @@ st.write("10. gender: Gender of the baby, female or male.")
 st.write("11. habit: Status of the mother as a nonsmoker or a smoker.")
 st.write("12. marital: Whether the mother is married or not married at birth.")
 st.write("13. whitemom: Whether the mom is white or not white.")
-
+st.write("We are gonna to perform an analysis on the factors related to a baby's birth weight, specifically focusing on the maternal factors.")
 st.write("Following the 'ceteris paribus' rule, we have exclusively chosen data related to male infants born to white mothers and focused our study on the factors originating from the mother that may affect the baby's birth weight.")
 
 # Sidebar for data exploration
