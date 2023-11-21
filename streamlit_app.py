@@ -36,6 +36,9 @@ st.write("Now, let's preprocess the data. Firstly, we will filter out data where
 # Filter data by white mothers and male babies
 filtered_df = df[(df["whitemom"] == "white") & (df["gender"] == "male")]
 
+# Handle missing values by filling them with the mean
+filtered_df.fillna(filtered_df.mean(), inplace=True)
+
 # Drop unnecessary columns
 filtered_df.drop(columns=["fage", "marital", "mature", "premie", "lowbirthweight"], inplace=True)
 
@@ -72,14 +75,15 @@ plt.ylabel('Weight')
 plt.title('Weight vs. Mage')
 st.pyplot(scatter_fig_mage)
 
-# Box plot: Weight vs. Habit (Smoking Status)
+# Box plot: Weight vs. Habit (Smoking Status) without gridlines
 st.subheader("Weight vs. Habit (Smoking Status)")
 boxplot_fig_habit = plt.figure()
-filtered_df.boxplot(column='weight', by='habit', ax=plt.gca())
+filtered_df.boxplot(column='weight', by='habit', ax=plt.gca(), grid=False)
 plt.xlabel('Habit (Smoking Status)')
 plt.ylabel('Weight')
 plt.title('Weight vs. Habit (Smoking Status)')
 st.pyplot(boxplot_fig_habit)
+
 
 # Scatter plot: Weight vs. Weeks
 st.subheader("Weight vs. Weeks")
