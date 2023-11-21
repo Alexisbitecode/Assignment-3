@@ -29,6 +29,33 @@ st.write("13. whitemom: Whether the mom is white or not white.")
 st.write("We are gonna to perform an analysis on the factors related to a baby's birth weight, specifically focusing on the maternal factors.")
 st.write("Following the 'ceteris paribus' rule, we have exclusively chosen data related to male infants born to white mothers and focused our study on the factors originating from the mother that may affect the baby's birth weight.")
 
+# Data preprocessing
+st.sidebar.header("Data Preprocessing")
+st.write("Now, let's preprocess the data.")
+
+# Drop unnecessary columns
+filtered_df.drop(columns=["fage", "marital", "mature", "premie", "lowbirthweight"], inplace=True)
+
+# Histograms
+st.subheader("Histograms")
+numeric_columns = filtered_df.select_dtypes(include=["number"]).columns
+
+# Set the overall figsize for the grid of histograms
+fig, axes = plt.subplots(nrows=len(numeric_columns), ncols=1, figsize=(8, 4 * len(numeric_columns)))
+
+# Iterate through numeric columns and create histograms
+for i, column in enumerate(numeric_columns):
+    ax = axes[i]
+    sns.histplot(data=filtered_df, x=column, bins=20, kde=True, ax=ax)
+    ax.set_title(f"Histogram of {column}")
+    ax.set_xlabel(column)
+    ax.set_ylabel("Frequency")
+
+# Adjust spacing between subplots
+plt.tight_layout()
+st.pyplot(plt)
+
+
 # Sidebar for data exploration
 st.sidebar.header("Data Exploration")
 
@@ -80,31 +107,7 @@ plt.ylabel('Weight')
 plt.title('Weight vs. Gained')
 st.pyplot(scatter_fig_gained)
 
-# Data preprocessing
-st.sidebar.header("Data Preprocessing")
-st.write("Now, let's preprocess the data.")
 
-# Drop unnecessary columns
-filtered_df.drop(columns=["fage", "marital", "mature", "premie", "lowbirthweight"], inplace=True)
-
-# Histograms
-st.subheader("Histograms")
-numeric_columns = filtered_df.select_dtypes(include=["number"]).columns
-
-# Set the overall figsize for the grid of histograms
-fig, axes = plt.subplots(nrows=len(numeric_columns), ncols=1, figsize=(8, 4 * len(numeric_columns)))
-
-# Iterate through numeric columns and create histograms
-for i, column in enumerate(numeric_columns):
-    ax = axes[i]
-    sns.histplot(data=filtered_df, x=column, bins=20, kde=True, ax=ax)
-    ax.set_title(f"Histogram of {column}")
-    ax.set_xlabel(column)
-    ax.set_ylabel("Frequency")
-
-# Adjust spacing between subplots
-plt.tight_layout()
-st.pyplot(plt)
 
 # Correlation matrix
 st.subheader("Correlation Matrix")
