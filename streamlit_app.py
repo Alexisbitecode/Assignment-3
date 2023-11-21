@@ -53,20 +53,33 @@ filtered_df.drop(columns=["fage", "marital", "mature", "premie", "lowbirthweight
 st.subheader("Histograms")
 numeric_columns = filtered_df.select_dtypes(include=["number"]).columns
 
-# Set the overall figsize for the grid of histograms
-fig, axes = plt.subplots(nrows=len(numeric_columns), ncols=1, figsize=(8, 4 * len(numeric_columns)))
+# Calculate the number of rows and columns for the grid
+num_rows = len(numeric_columns) // 3 + (len(numeric_columns) % 3 > 0)
+num_cols = min(len(numeric_columns), 3)
+
+# Create a figure with subplots
+fig, axes = plt.subplots(nrows=num_rows, ncols=num_cols, figsize=(15, 4 * num_rows))
 
 # Iterate through numeric columns and create histograms
 for i, column in enumerate(numeric_columns):
-    ax = axes[i]
+    row_idx = i // 3
+    col_idx = i % 3
+    ax = axes[row_idx, col_idx]
+    
     sns.histplot(data=filtered_df, x=column, bins=20, kde=True, ax=ax)
     ax.set_title(f"Histogram of {column}")
     ax.set_xlabel(column)
     ax.set_ylabel("Frequency")
 
+# Remove empty subplots
+for i in range(len(numeric_columns), num_rows * num_cols):
+    fig.delaxes(axes.flatten()[i])
+
 # Adjust spacing between subplots
 plt.tight_layout()
-st.pyplot(plt)
+
+# Display the figure using st.pyplot
+st.pyplot(fig)
 
 
 # Sidebar for data exploration
