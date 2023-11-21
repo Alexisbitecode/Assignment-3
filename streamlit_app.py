@@ -31,7 +31,7 @@ st.write("Following the 'ceteris paribus' rule, we have exclusively chosen data 
 
 # Data preprocessing
 st.sidebar.header("Data Preprocessing")
-st.write("Now, let's preprocess the data.")
+st.write("Now, let's preprocess the data. Firstly, we will filter out data where the gender is male, and the mom's race is white. Then, we will drop the father-related variable column: fage. Since prematurity is defined by the length of pregnancy in weeks, we will only keep 'weeks' and drop 'premie.' Maturity status is decided by the mom's age, so we will drop 'mature'. We choose 'weight' as our dependent varible and drop 'lowbirthweight'.")
 
 # Filter data by white mothers and male babies
 filtered_df = df[(df["whitemom"] == "white") & (df["gender"] == "male")]
