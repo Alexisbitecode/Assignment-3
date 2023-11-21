@@ -188,10 +188,6 @@ st.write(f"R-squared (R2): {r2}")
 X = filtered_df_encoded[["weeks", "habit_smoker"]]
 y = filtered_df_encoded["weight"]
 
-# Convert columns to appropriate data types (float)
-
-X["weeks"] = X["weeks"].astype(float)
-
 
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
