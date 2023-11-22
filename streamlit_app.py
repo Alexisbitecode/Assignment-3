@@ -144,7 +144,7 @@ st.write("From the bivariate plots, we can see that 'weeks' and 'weight' exhibit
 
 # Correlation matrix
 st.subheader("Correlation Matrix")
-St.write("Let's take a deeper look at how much each numeric variable relates to weight")
+st.write("Let's take a deeper look at how much each numeric variable relates to weight")
 
 
 # Calculate the correlation matrix
