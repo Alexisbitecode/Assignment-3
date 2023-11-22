@@ -205,7 +205,7 @@ st.text(results.summary())
 
 st.write("From the above summary, we can see that the R-squared value is 0.407, indicating that approximately 40.7% of the variance in the 'weight' can be explained by the independent variables in the model.The F-statistic tests the overall significance of the regression model. In this case, it's 78.61, and the associated p-value (Prob (F-statistic)) is very close to zero (1.00e-38), indicating that the model is statistically significant.")
 st.write("We can see coefficients for the independent variables in our model. The coefficients represent the change in the dependent variable (weight) associated with a one-unit change in the corresponding independent variable while holding all other variables constant.Each coefficient also has associated statistics like standard error, t-value, and p-value. The p-values (P>|t|) are used to test the null hypothesis that the corresponding coefficient is equal to zero. In this case, 'weeks' and 'habit-smoker' have very low p-values, suggesting they are statistically significant predictors")
-st.write("weight = -5.9045 + 0.3357 * weeks + 0.0425 * visits - 0.4922 * habit_smoker")
+st.write("Our regression model is: weight = -5.9045 + 0.3357 * weeks + 0.0425 * visits - 0.4922 * habit_smoker")
 
 
 
