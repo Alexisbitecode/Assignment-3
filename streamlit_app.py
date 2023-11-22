@@ -95,7 +95,7 @@ st.write("For baby's birth weight, the peak occurs between 7 to 9 pounds.")
 
 
 st.subheader("Bivariate Plots")
-st.write("Now, let's explore the relationshipt bewtween each variable and baby's weight")
+st.write("Now, let's explore the relationshipt bewtween each variable and baby's weight.")
 
 # Create subplots with a 2-row, three-column grid
 fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(15, 8))
@@ -144,8 +144,6 @@ st.write("From the bivariate plots, we can see that 'weeks' and 'weight' exhibit
 
 # Correlation matrix
 st.subheader("Correlation Matrix")
-st.write("Let's take a deeper look at how much each numeric variable relates to weight")
-
 
 # Calculate the correlation matrix
 correlation_matrix = filtered_df.corr()
