@@ -90,7 +90,7 @@ st.pyplot(fig)
 st.write("From the histograms, we observe that mothers' ages are concentrated between 20 to 35 years.")
 st.write("In terms of pregnancy weeks, the majority of data points cluster around 37.5 weeks, but there are also instances beyond 35 weeks.")
 st.write("Regarding the number of hospital visits, most data falls within the range of 10 to 15 visits.")
-st.write("Mothers' weight gain during pregnancy ranges from 20 to 40 pounds.")
+st.write("Mothers' weight gain during pregnancy mostly ranges from 20 to 40 pounds.")
 st.write("For baby's birth weight, the peak occurs between 7 to 9 pounds.")
 
 
@@ -162,9 +162,9 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 # Linear regression analysis with statsmodels
 st.sidebar.header("Linear Regression Analysis")
-st.write("Now, let's perform linear regression using statsmodels.")
+st.write("Now, let's perform regression using statsmodels, and we get the following result.")
 
-
+st.write("We will firstly encode the 'habit' since it's a categorical variable, and then we will get the numeric 'habit_smoker' variable. We will use this varible in our regression model.")
 # One-hot encoding for habit
 filtered_df_encoded = pd.get_dummies(filtered_df, columns=["habit"], drop_first=True)
 
@@ -202,8 +202,8 @@ results = model_stats.fit()
 st.subheader("Regression Results")
 st.text(results.summary())
 
-st.write("From the above summary, we can see that the R-squared value is 0.411, indicating that approximately 41.1% of the variance in the 'weight' can be explained by the independent variables in the model.The F-statistic tests the overall significance of the regression model. In this case, it's 59.65, and the associated p-value (Prob (F-statistic)) is very close to zero (3.54e-38), indicating that the model is statistically significant.")
-st.write("We can see coefficients for the independent variables in our model. The coefficients represent the change in the dependent variable (weight) associated with a one-unit change in the corresponding independent variable while holding all other variables constant.Each coefficient also has associated statistics like standard error, t-value, and p-value. The p-values (P>|t|) are used to test the null hypothesis that the corresponding coefficient is equal to zero. In this case, 'weeks' and 'visits' have very low p-values, suggesting they are statistically significant predictors, while 'mage' and 'habit_smoker' have higher p-values, indicating they may not be as significant.")
+st.write("From the above summary, we can see that the R-squared value is 0.407, indicating that approximately 40.7% of the variance in the 'weight' can be explained by the independent variables in the model.The F-statistic tests the overall significance of the regression model. In this case, it's 78.61, and the associated p-value (Prob (F-statistic)) is very close to zero (1.00e-38), indicating that the model is statistically significant.")
+st.write("We can see coefficients for the independent variables in our model. The coefficients represent the change in the dependent variable (weight) associated with a one-unit change in the corresponding independent variable while holding all other variables constant.Each coefficient also has associated statistics like standard error, t-value, and p-value. The p-values (P>|t|) are used to test the null hypothesis that the corresponding coefficient is equal to zero. In this case, 'weeks' and 'habit-smoker' have very low p-values, suggesting they are statistically significant predictors, while 'mage' and 'habit_smoker' have higher p-values, indicating they may not be as significant.")
 
 
 
