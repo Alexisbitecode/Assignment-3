@@ -160,13 +160,14 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
+st.write("We will firstly encode the 'habit' since it's a categorical variable, and then we will get the numeric 'habit_smoker' variable. We will use this varible in our regression model.")
+# One-hot encoding for habit
+filtered_df_encoded = pd.get_dummies(filtered_df, columns=["habit"], drop_first=True)
 # Linear regression analysis with statsmodels
 st.sidebar.header("Linear Regression Analysis")
 st.write("Now, let's perform regression using statsmodels, and we get the following result.")
 
-st.write("We will firstly encode the 'habit' since it's a categorical variable, and then we will get the numeric 'habit_smoker' variable. We will use this varible in our regression model.")
-# One-hot encoding for habit
-filtered_df_encoded = pd.get_dummies(filtered_df, columns=["habit"], drop_first=True)
+
 
 # Define independent and dependent variables
 X = filtered_df_encoded[["weeks", "visits", "habit_smoker"]]
