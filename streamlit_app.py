@@ -87,7 +87,7 @@ plt.tight_layout()
 # Display the figure using st.pyplot
 st.pyplot(fig)
 
-st.write("From the histograms, we observe that mothers' ages are concentrated between 20 to 35 years, with some outliers beyond 35.")
+st.write("From the histograms, we observe that mothers' ages are concentrated between 20 to 35 years.")
 st.write("In terms of pregnancy weeks, the majority of data points cluster around 37.5 weeks, but there are also instances beyond 35 weeks.")
 st.write("Regarding the number of hospital visits, most data falls within the range of 10 to 15 visits.")
 st.write("Mothers' weight gain during pregnancy ranges from 20 to 40 pounds.")
@@ -144,18 +144,19 @@ st.write("From the bivariate plots, we can see that 'weeks' and 'weight' exhibit
 
 # Correlation matrix
 st.subheader("Correlation Matrix")
-St.write("We want to examine the relationship of each variable with weight. Since smoking habit is a categorical variable, we will encode it as a numeric variable so that we can include it in our correlation matrix.")
+St.write("Let's take a deeper look at how much each numeric variable relates to weight")
 
-# One-hot encoding for habit
-filtered_df_encoded = pd.get_dummies(filtered_df, columns=["habit"], drop_first=True)
 
 # Calculate the correlation matrix
-correlation_matrix = filtered_df_encoded.corr()
+correlation_matrix = filtered_df.corr()
+
 # Create a heatmap of the correlation matrix
 plt.figure(figsize=(12, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", linewidths=0.5)
 plt.title("Correlation Matrix")
 st.pyplot(plt)
+
+
 
 
 from sklearn.linear_model import LinearRegression
@@ -167,7 +168,8 @@ st.sidebar.header("Linear Regression Analysis")
 st.write("Now, let's perform linear regression using statsmodels.")
 
 
-
+# One-hot encoding for habit
+filtered_df_encoded = pd.get_dummies(filtered_df, columns=["habit"], drop_first=True)
 # Define independent and dependent variables
 X = filtered_df_encoded[["mage", "weeks", "visits", "habit_smoker"]]
 y = filtered_df_encoded["weight"]
