@@ -153,9 +153,8 @@ plt.figure(figsize=(12, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", linewidths=0.5)
 plt.title("Correlation Matrix")
 st.pyplot(plt)
-
-
-
+st.write("From the correlation matrix, we can observe that 'weeks' and 'visits' exhibit a positive correlation with 'weight,' with 'weeks' showing a particularly strong correlation. Considering both the bivariate analysis and correlation matrix, it may be advisable to exclude 'mage' and 'gained' variables since we did not identify any significant patterns or large coefficients associated with these two variables.")
+st.write("In our final part, we will build a multivariate regression model using 'weeks,' 'visits,' and smoking habit.") 
 
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
@@ -168,12 +167,12 @@ st.write("Now, let's perform linear regression using statsmodels.")
 
 # One-hot encoding for habit
 filtered_df_encoded = pd.get_dummies(filtered_df, columns=["habit"], drop_first=True)
+
 # Define independent and dependent variables
-X = filtered_df_encoded[["mage", "weeks", "visits", "habit_smoker"]]
+X = filtered_df_encoded[["weeks", "visits", "habit_smoker"]]
 y = filtered_df_encoded["weight"]
 
 # Convert columns to appropriate data types (float)
-X["mage"] = X["mage"].astype(float)
 X["weeks"] = X["weeks"].astype(float)
 X["visits"] = X["visits"].astype(float)
 
