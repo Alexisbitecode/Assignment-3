@@ -139,7 +139,7 @@ plt.tight_layout()
 # Display the figure using st.pyplot
 st.pyplot(fig)
 
-st.write("From the bivariate plots, we can see that "weeks" and "weight" exhibit a clear positive relationship. Additionally, the average birth weight of babies born to non-smoking mothers is higher than that of babies born to smoking mothers.")
+st.write("From the bivariate plots, we can see that 'weeks' and 'weight' exhibit a clear positive relationship. Additionally, the average birth weight of babies born to non-smoking mothers is higher than that of babies born to smoking mothers.")
 
 
 # Correlation matrix
@@ -203,8 +203,8 @@ results = model_stats.fit()
 st.subheader("Regression Results")
 st.text(results.summary())
 
-st.write("From the above summary, we can see that the R-squared value is 0.411, indicating that approximately 41.1% of the variance in the "weight" can be explained by the independent variables in the model.The F-statistic tests the overall significance of the regression model. In this case, it's 59.65, and the associated p-value (Prob (F-statistic)) is very close to zero (3.54e-38), indicating that the model is statistically significant.")
-st.write("We can see coefficients for the independent variables in our model. The coefficients represent the change in the dependent variable (weight) associated with a one-unit change in the corresponding independent variable while holding all other variables constant.Each coefficient also has associated statistics like standard error, t-value, and p-value. The p-values (P>|t|) are used to test the null hypothesis that the corresponding coefficient is equal to zero. In this case, "weeks" and "visits" have very low p-values, suggesting they are statistically significant predictors, while "mage" and "habit_smoker" have higher p-values, indicating they may not be as significant.")
+st.write("From the above summary, we can see that the R-squared value is 0.411, indicating that approximately 41.1% of the variance in the 'weight' can be explained by the independent variables in the model.The F-statistic tests the overall significance of the regression model. In this case, it's 59.65, and the associated p-value (Prob (F-statistic)) is very close to zero (3.54e-38), indicating that the model is statistically significant.")
+st.write("We can see coefficients for the independent variables in our model. The coefficients represent the change in the dependent variable (weight) associated with a one-unit change in the corresponding independent variable while holding all other variables constant.Each coefficient also has associated statistics like standard error, t-value, and p-value. The p-values (P>|t|) are used to test the null hypothesis that the corresponding coefficient is equal to zero. In this case, 'weeks' and 'visits' have very low p-values, suggesting they are statistically significant predictors, while 'mage' and 'habit_smoker' have higher p-values, indicating they may not be as significant.")
 
 
 
